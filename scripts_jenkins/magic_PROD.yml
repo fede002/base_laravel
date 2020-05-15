@@ -1,0 +1,16 @@
+- hosts: win
+
+  tasks:
+    - name: COPIO CODIGO
+      win_robocopy:
+        src: 'D:\recetasBasa'
+        dest: 'D:\recetasBasa_PROD'
+        flags: /MIR /W:0 /R:0 /XD "D:\recetasBasa\storage"
+        
+    - name: COPIO ENV
+      win_copy:
+        src: /var/lib/jenkins/workspace/RECETAS a QA/scripts_jenkins/prod/.env
+        dest: D:\recetasBasa_PROD\
+
+    - name: POWERSHELL SCRIP
+      win_command: powershell.exe -ExecutionPolicy ByPass -File D:\recetasBasa_PROD\scripts_jenkins\post_PROD.ps1

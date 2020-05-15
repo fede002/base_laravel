@@ -1,0 +1,26 @@
+- hosts: win
+
+  tasks:
+    - name: COPIO CODIGO
+      win_copy:
+        src: /var/lib/jenkins/workspace/RECETAS a QA/
+        dest: C:\Windows\Temp\borrar
+
+    - name: COPIO CODIGO CON ROBOCOPY
+      win_robocopy:
+        src: 'C:\Windows\Temp\borrar'
+        dest: 'D:\recetasBasa'
+        flags: /MIR /W:0 /R:0 /XD "C:\Windows\Temp\borrar\storage"
+
+    - name: COPIO SCRIPT POWERSHELL
+      win_copy:
+        src: /var/lib/jenkins/workspace/RECETAS a QA/scripts_jenkins/qa/.env
+        dest: D:\recetasBasa\
+
+    - name: EJECUTO POWERSHELL SCRIPT
+      win_command: powershell.exe -ExecutionPolicy ByPass -File D:\recetasBasa\scripts_jenkins\post_QA.ps1
+
+    - name: BORRO ARCHIVOS ORIGEN
+      win_file:
+        path: 'C:\Windows\Temp\borrar'
+        state: absent
