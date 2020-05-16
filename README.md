@@ -1,5 +1,5 @@
-# base_laravel
-Proyecto base PHP de laravel con recursos comunes para nuevos desarrollos
+# base_laravel_58X
+Proyecto base PHP de laravel 5.8.X con recursos comunes para nuevos desarrollos
 
 ## Instalación
 Puede descargar el proyecto o clonarlo.
@@ -9,6 +9,12 @@ Ubicado en el directorio del proyecto, ejecutar:
 ```
 composer install
 ```
+
+Luego debe copiar y editar el archivo .env para el proyecto nuevo
+```
+cp .env.axample .env
+```
+En el mismo tiene las variables de configuración para acceso a db, servidor de mail, etc
 
 ## El proyecto base cuenta con (PENDIENTE DE COMPLETAR):
 
